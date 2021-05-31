@@ -90,7 +90,7 @@ return (success == "FAILED") ? 1 : 0
 def int copyDir(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
 
 println("Copy folder by checksum: ${from}")
-FilePath fromFilePath =  new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), from)
+FilePath fromFilePath =  new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), path.toString())
 int success = 0
 
 int filesCopied = 0
