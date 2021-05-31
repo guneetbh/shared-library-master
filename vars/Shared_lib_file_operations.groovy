@@ -132,7 +132,7 @@ int size = filesList.size()
 for (File file in filesList) {
 println "######################### Inside Loop"
 count++
-File source = new File(from + "/"+file.toString()).getPath();
+
 String res = takeCareOnOneFile(count, size, source, to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
@@ -266,8 +266,8 @@ def List<String> listFiles(rootPath) {
     print "Files in ${rootPath}:";
     List<String> filesList = new ArrayList<String>();
     for (subPath in rootPath.list()) {
-        println "Files found: ${subPath.getName()}";
-        filesList.add("${subPath.getName()}");
+        println "Files found: ${subPath}";
+        filesList.add("${subPath}");
     }
     return filesList
 }
