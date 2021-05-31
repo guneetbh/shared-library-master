@@ -129,10 +129,10 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 for (File file in filesList) {
-
+println "############# ${file.getPath()}"
 count++
 
-String res = takeCareOnOneFile(count, size, file, to.toString(), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, file.getPath(), to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
 
