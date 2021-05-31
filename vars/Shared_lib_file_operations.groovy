@@ -129,6 +129,9 @@ return 4
 
 //}
 
+if (!to.exists()){
+	to.mkdirs()
+}
 def  filesList =  listFiles(createFilePath(pwd()));
 println("Files in source folder : ${filesList.size()}")
 
