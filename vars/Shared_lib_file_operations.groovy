@@ -90,7 +90,7 @@ return (success == "FAILED") ? 1 : 0
 def int copyDir(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
 
 println("Copy folder by checksum: ${from}")
-FilePath fromFilePath =  new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), path.toString())
+
 int success = 0
 
 int filesCopied = 0
@@ -121,14 +121,15 @@ return 4
 
 }
 
-Vector<File> filesList = new Vector()
+//Vector<File> filesList = new Vector()
 
-from.eachFileRecurse(FileType.FILES) { File file ->
+//from.eachFileRecurse(FileType.FILES) { File file ->
 
-filesList.add(file)
+//filesList.add(file)
 
-}
+//}
 
+def  filesList =  listFiles(createFilePath(pwd()));
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
@@ -137,7 +138,7 @@ for (File file in filesList) {
 
 count++
 
-File remoteFile = new File(file.getAbsolutePath().replace(from.getAbsolutePath(), to.getAbsolutePath()))
+File remoteFile = new File(file.getPath().replace(from.getPath(), to.getPath()))
 
 String res = takeCareOnOneFile(count, filesList.size(), file, remoteFile, verbose, silent, skipNewer)
 
