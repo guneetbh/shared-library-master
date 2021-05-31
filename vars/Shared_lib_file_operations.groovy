@@ -134,6 +134,7 @@ println "######################### Inside Loop"
 count++
 
 String res = takeCareOnOneFile(count, size, file.toString(), to.toString(), verbose, silent, skipNewer)
+
 println "######################### ${res}"
 switch (res) {
 
@@ -173,12 +174,9 @@ return success
 
 static String takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
 
-// Copy one file to destination
-
-// Copy because destination is different (has different hash)
 println ("We are inside takeCareOnOneFile")
 //printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
-def retString =  "COPY_NEWF" //(copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
+def retString =  (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
 println ("We are inside retString: ${retString}")
 return retString
 }
