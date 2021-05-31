@@ -6,6 +6,8 @@ import java.security.MessageDigest
 
 import java.nio.file.Files
 
+import hudson.FilePath;
+
 import java.nio.file.Paths
 
 import groovy.io.FileType
