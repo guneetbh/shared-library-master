@@ -1,3 +1,6 @@
+#!/usr/bin/env groovy
+
+
 if (sub_env.equals("Prod1")){
  return ["Prod-server-1","Prod-server2"]
 }else if (sub_env.equals("QA1")){

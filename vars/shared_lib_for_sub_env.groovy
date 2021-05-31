@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 if (env.equals("Production")){
  return ["Prod1"]
 }else if (env.equals("QA")){
