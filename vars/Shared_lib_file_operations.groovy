@@ -134,7 +134,7 @@ println "######################### Inside Loop"
 count++
 
 String res = takeCareOnOneFile(count, size, file.toString(), to.toString(), verbose, silent, skipNewer)
-
+println "######################### ${res}"
 switch (res) {
 
 case "SKIP_DATE": filesSKIP_DATE++; filesSkipped++; break
@@ -181,8 +181,8 @@ println ("We are inside takeCareOnOneFile")
 def retString = (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
 println ("We are inside retString: ${retString}")
 return retString
-
 }
+
 static boolean copyOneFile(String source, String target) {
 println "We are inside copyOneFile"
 try {
