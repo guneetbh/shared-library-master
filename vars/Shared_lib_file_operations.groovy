@@ -22,15 +22,23 @@ See more in 'help' below
 
 */
 
-def call(File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
+def call(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
 
 
 println "Method Called"
+	println ("From file: "+from)
+
+		println ("from.getPath()" + from.getPath())
+		println ("from.getPath()" + to.getPath())
+  		println ("From exists: "+from.exists())
+  		
+  		println (" File? ${from.isFile()}")
+        println (" Directory? ${from.isDirectory()}")
 if(file.isFile()) {
-	copyFile(file,  remoteFile,  verbose,  silent,  skipNewer)
+	copyFile(from,  to,  verbose,  silent,  skipNewer)
 	}
 else if (file.isDirectory()){
-	copyDir(from, File to, verbose, silent, skipNewer)
+	copyDir(from, to, verbose, silent, skipNewer)
 }
 println "Method Called"	
 
