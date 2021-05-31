@@ -30,26 +30,15 @@ def call(String from, String to, boolean verbose, boolean silent, boolean skipNe
 println "Method Called"
 File source = new File(from)
 File destination = new File(to)
-	println ("From file: "+from)
-
-		println ("From Path: " + source.getAbsolutePath())
-		println ("To Path: " + destination.getAbsolutePath())
-  		println ("From exists: "+source .exists())
-  		if(!source.exists()){
-			println "Creating directory"
-			source.mkdirs()
-		}
-  		println (" File? ${source.isFile()}")
-        println (" Directory? ${source.isDirectory()}")
-		
-		 def  filesList =  listFiles(createFilePath(source.toString()));
+println ("From file: "+from)
+def  filesList =  listFiles(createFilePath(from));
 		 
 if(source.isFile()) {
 	copyFile(source, destination, verbose,  silent,  skipNewer)
 	}
 else if (source.isDirectory()){
 	println "**** Copying files"		
-	copyDir(source, destination, verbose, silent, skipNewer)
+	copyDir(from, to, verbose, silent, skipNewer)
 	println "**** Copying finished"
 }
 println "Method Called"	
@@ -89,7 +78,7 @@ return (success == "FAILED") ? 1 : 0
 
 }
 
-def int copyDir(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
+def int copyDir(String from, String to, boolean verbose, boolean silent, boolean skipNewer) {
 
 println("Copy folder by checksum: ${from}")
 
@@ -107,7 +96,7 @@ int filesCOPY_HASH = 0
 
 int filesCOPY_NEWF = 0
 
-if (!from.exists()) {
+if (!new File(from).exists()) {
 
 println("Error. Source folder not found ${from.getAbsolutePath()}")
 
@@ -115,7 +104,7 @@ return 2
 
 }
 
-if (!from.isDirectory()) {
+if (!new File(from).isDirectory()) {
 
 println("Error. Source must be folder. ${from.getAbsolutePath()}")
 
@@ -131,10 +120,10 @@ return 4
 
 //}
 
-if (!to.exists()){
-	to.mkdirs()
+if (!new File(to).exists()){
+	new File(to).mkdirs()
 }
-def  filesList =  listFiles(createFilePath(from.toString()));
+def  filesList =  listFiles(createFilePath(from)));
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
@@ -143,11 +132,7 @@ for (File file in filesList) {
 
 count++
 
-//println "remoteFile Path : ${file.replace(from, to)}"
-//File remoteFile = new File(file.replace(from, to))
-//println("Files in remoteFile :  ${remoteFile}")
-
-String res = takeCareOnOneFile(count, filesList.size(), file, createFilePath(to.toString()), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, filesList.size(), file, to, verbose, silent, skipNewer)
 
 switch (res) {
 
@@ -185,12 +170,12 @@ return success
 
 }
 
-static String takeCareOnOneFile(int count, int filesNumber, File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
+static String takeCareOnOneFile(int count, int filesNumber, File file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
 
 // Copy one file to destination
 
 // Copy because destination is different (has different hash)
-FilePath destFilePath = createFilePath(pwd() + "/WEBUI2")
+
 printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
 
 return (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
@@ -231,7 +216,7 @@ returnExitCode (7)
 
 }
 
-static boolean copyOneFile(File source, File target) {
+static boolean copyOneFile(File source, String target) {
 
 try {
 
@@ -243,7 +228,7 @@ try {
 
 //}
 println "We are inside copyOneFile"
-Files.copy(Paths.get(source.getAbsolutePath()), Paths.get(target.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING)
+Files.copy(Paths.get(source.getPath()), Paths.get(new File(target).getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING)
 
 println("Done to copy ${target}")
 
