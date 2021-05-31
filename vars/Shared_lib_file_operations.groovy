@@ -133,7 +133,7 @@ for (File file in filesList) {
 println "######################### Inside Loop"
 count++
 
-String res = takeCareOnOneFile(count, size, source, to.toString(), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, file, to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
 
