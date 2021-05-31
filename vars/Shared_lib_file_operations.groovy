@@ -231,12 +231,11 @@ try {
 
 println "We are inside copyOneFile"
 Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
-
 println("Done to copy ${target}")
 
 } catch (Exception e) {
 
-println("Error. Failed to copy file ${source}. \n ${e}")
+println("Error. Failed to copy file ${source}. \n ${e.printStackTrace}")
 
 return false
 
