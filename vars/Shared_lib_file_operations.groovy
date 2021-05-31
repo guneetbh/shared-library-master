@@ -41,6 +41,7 @@ if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
 	}
 else if (from.isDirectory()){
+	println "**** Copying files"	
 	copyDir(from, to, verbose, silent, skipNewer)
 }
 println "Method Called"	
