@@ -133,7 +133,7 @@ for (File file in filesList) {
 println "######################### Inside Loop"
 count++
 
-String res = takeCareOnOneFile(count, size, file, to.toString(), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, file.toString(), to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
 
@@ -171,7 +171,7 @@ return success
 
 }
 
-static String takeCareOnOneFile(int count, int filesNumber, File file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
+static String takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
 
 // Copy one file to destination
 
@@ -217,7 +217,7 @@ returnExitCode (7)
 
 }
 
-static boolean copyOneFile(File source, String target) {
+static boolean copyOneFile(String source, String target) {
 
 try {
 
@@ -228,8 +228,9 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
+
 println "We are inside copyOneFile"
-Files.copy(Paths.get(source.getPath()), Paths.get(new File(target).getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING)
+Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
 
 println("Done to copy ${target}")
 
