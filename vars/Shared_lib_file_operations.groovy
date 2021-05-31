@@ -141,10 +141,10 @@ for (File file in filesList) {
 
 count++
 
-println "remoteFile Path : ${file.replace(from, to)}"
+//println "remoteFile Path : ${file.replace(from, to)}"
 //File remoteFile = new File(file.replace(from, to))
-println("Files in remoteFile :  ${remoteFile}")
-String res = takeCareOnOneFile(count, filesList.size(), file, remoteFile, verbose, silent, skipNewer)
+//println("Files in remoteFile :  ${remoteFile}")
+String res = takeCareOnOneFile(count, filesList.size(), file, to, verbose, silent, skipNewer)
 
 switch (res) {
 
@@ -186,53 +186,11 @@ static String takeCareOnOneFile(int count, int filesNumber, File file, File remo
 
 // Copy one file to destination
 
-if (remoteFile.exists()) {
-
-// Skip copy because remote file is never than source. (Use this only if flag passed by user)
-
-if (skipNewer && remoteFile.lastModified() > file.lastModified()) {
-
-printLine("File [${count}/${filesNumber}] : SKIP_DATE : ${file} ", silent)
-
-return "SKIP_DATE"
-
-}
-
-String hash1 = getMD5(file)
-
-String hash2 = getMD5(remoteFile)
-
-if (hash1 == hash2) {
-
-// Skip because source and destination files are same (hashes are same)
-
-if (verbose) {
-
-printLine("File [${count}/${filesNumber}] : SKIP_COPY : ${file} ", silent)
-
-}
-
-return "SKIP_COPY"
-
-} else {
-
 // Copy because destination is different (has different hash)
-
-printLine("File [${count}/${filesNumber}] : COPY_HASH : ${file}", silent)
-
-return (copyOneFile(file, remoteFile)) ? "COPY_HASH" : "FAILED"
-
-}
-
-} else {
-
-// Copy because destination file is missing
 
 printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
 
 return (copyOneFile(file, remoteFile)) ? "COPY_NEWF" : "FAILED"
-
-}
 
 }
 
@@ -272,16 +230,16 @@ returnExitCode (7)
 
 static boolean copyOneFile(File source, File target) {
 
-try {
+//try {
 
-File parent = new File(target.getParent())
+//File parent = new File(target.getParent())
 
-if (!parent.exists()) {
+//if (!parent.exists()) {
 
-boolean createdParent = parent.mkdirs()
+//boolean createdParent = parent.mkdirs()
 
-}
-
+//}
+println "We are inside copyOneFile"
 Files.copy(Paths.get(source.getAbsolutePath()), Paths.get(target.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING)
 
 println("Done to copy ${target}")
