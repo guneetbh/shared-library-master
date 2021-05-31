@@ -230,7 +230,7 @@ returnExitCode (7)
 
 static boolean copyOneFile(File source, File target) {
 
-//try {
+try {
 
 //File parent = new File(target.getParent())
 
