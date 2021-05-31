@@ -24,7 +24,7 @@ See more in 'help' below
 
 def call(File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
 
-coppy(){
+
 println "Method Called"
 if(file.isFile()) {
 	copyFile(file,  remoteFile,  verbose,  silent,  skipNewer)
@@ -33,7 +33,7 @@ else if (file.isDirectory()){
 	copyDir(from, File to, verbose, silent, skipNewer)
 }
 println "Method Called"	
-}
+
 }
 
 
