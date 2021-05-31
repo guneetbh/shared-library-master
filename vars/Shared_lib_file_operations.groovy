@@ -178,7 +178,7 @@ static String takeCareOnOneFile(int count, int filesNumber, String file, String 
 // Copy because destination is different (has different hash)
 println ("We are inside takeCareOnOneFile")
 //printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
-def retString = (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
+def retString =  "COPY_NEWF" //(copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
 println ("We are inside retString: ${retString}")
 return retString
 }
@@ -196,7 +196,7 @@ try {
 //}
 
 
-Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
+//Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
 println("Done to copy ${target}")
 
 } catch (Exception e) {
