@@ -176,13 +176,40 @@ static String takeCareOnOneFile(int count, int filesNumber, String file, String 
 // Copy one file to destination
 
 // Copy because destination is different (has different hash)
-println "We are inside takeCareOnOneFile"
-printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
+println ("We are inside takeCareOnOneFile")
+//printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
+def retString = (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
+println ("We are inside retString: ${retString}")
+return retString
 
-return (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
+}
+static boolean copyOneFile(String source, String target) {
+println "We are inside copyOneFile"
+try {
+
+//File parent = new File(target.getParent())
+
+//if (!parent.exists()) {
+
+//boolean createdParent = parent.mkdirs()
+
+//}
+
+
+Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
+println("Done to copy ${target}")
+
+} catch (Exception e) {
+
+println("Error. Failed to copy file ${source}. \n ${e}")
+
+return false
 
 }
 
+return true
+
+}
 static void printLine(String line, boolean silent) {
 
 if (!silent) {
@@ -217,33 +244,7 @@ returnExitCode (7)
 
 }
 
-static boolean copyOneFile(String source, String target) {
 
-try {
-
-//File parent = new File(target.getParent())
-
-//if (!parent.exists()) {
-
-//boolean createdParent = parent.mkdirs()
-
-//}
-
-println "We are inside copyOneFile"
-Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
-println("Done to copy ${target}")
-
-} catch (Exception e) {
-
-println("Error. Failed to copy file ${source}. \n ${e}")
-
-return false
-
-}
-
-return true
-
-}
 
 static void returnExitCode(int error) {
 
