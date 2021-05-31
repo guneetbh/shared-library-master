@@ -29,7 +29,7 @@ println "Method Called"
 	println ("From file: "+from)
 
 		println ("from.getPath()" + from.getPath())
-		println ("from.getPath()" + to.getPath())
+		println ("to.getPath()" + to.getPath())
   		println ("From exists: "+from.exists())
   		if(!from.exists()){
 			println "Creating directory"
@@ -37,11 +37,15 @@ println "Method Called"
 		}
   		println (" File? ${from.isFile()}")
         println (" Directory? ${from.isDirectory()}")
+		
+		 def  filesList =  listFiles(createFilePath("${from}"));
+		 
 if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
 	}
 else if (from.isDirectory()){
 	println "**** Copying files"	
+	
 	copyDir(from, to, verbose, silent, skipNewer)
 }
 println "Method Called"	
@@ -291,5 +295,26 @@ static void returnExitCode(int error) {
 
 System.exit(error)
 
+}
+
+def createFilePath(path) {
+    if (env['NODE_NAME'] == null) {
+        error "envvar NODE_NAME is not set, probably not inside an node {} or running an older version of Jenkins!";
+    } else if (env['NODE_NAME'].equals("master")) {
+        return new FilePath(path);
+    } else {
+        return new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), path);
+    }
+}
+
+@NonCPS
+def List<String> listFiles(rootPath) {
+    print "Files in ${rootPath}:";
+    List<String> filesList = new ArrayList<String>();
+    for (subPath in rootPath.list()) {
+        println "Files found: ${subPath.getName()}";
+        filesList.add("${subPath.getName()}");
+    }
+    return filesList
 }
 
