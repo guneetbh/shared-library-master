@@ -24,30 +24,32 @@ See more in 'help' below
 
 */
 
-def call(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
+def call(String from, String to, boolean verbose, boolean silent, boolean skipNewer) {
 
 
 println "Method Called"
+File source = new File(from)
+File destination = new File(to)
 	println ("From file: "+from)
 
-		println ("from.getPath()" + from.getPath())
-		println ("to.getPath()" + to.getPath())
-  		println ("From exists: "+from.exists())
-  		if(!from.exists()){
+		println ("From Path: " + source.getAbsolutePath())
+		println ("To Path: " + destination.getAbsolutePath())
+  		println ("From exists: "+source .exists())
+  		if(!source.exists()){
 			println "Creating directory"
-			from.mkdirs()
+			source.mkdirs()
 		}
-  		println (" File? ${from.isFile()}")
-        println (" Directory? ${from.isDirectory()}")
+  		println (" File? ${source.isFile()}")
+        println (" Directory? ${source.isDirectory()}")
 		
-		 def  filesList =  listFiles(createFilePath(from.toString()));
+		 def  filesList =  listFiles(createFilePath(source.toString()));
 		 
-if(from.isFile()) {
-	copyFile(from,  to,  verbose,  silent,  skipNewer)
+if(source.isFile()) {
+	copyFile(source, destination, verbose,  silent,  skipNewer)
 	}
 else if (from.isDirectory()){
 	println "**** Copying files"		
-	copyDir(from, to, verbose, silent, skipNewer)
+	copyDir(source, destination, verbose, silent, skipNewer)
 	println "**** Copying finished"
 }
 println "Method Called"	
