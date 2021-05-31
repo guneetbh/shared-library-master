@@ -182,7 +182,7 @@ return success
 
 }
 
-static String takeCareOnOneFile(int count, int filesNumber, File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
+def String takeCareOnOneFile(int count, int filesNumber, File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
 
 // Copy one file to destination
 
@@ -228,7 +228,7 @@ returnExitCode (7)
 
 }
 
-static boolean copyOneFile(File source, File target) {
+def boolean copyOneFile(File source, File target) {
 
 try {
 
