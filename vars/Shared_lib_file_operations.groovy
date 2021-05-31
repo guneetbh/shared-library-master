@@ -172,7 +172,7 @@ return success
 
 }
 
-static String takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
+def takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
 
 println ("We are inside takeCareOnOneFile")
 //printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
@@ -181,7 +181,7 @@ println ("We are inside retString: ${retString}")
 return retString
 }
 
-static boolean copyOneFile(String source, String target) {
+def copyOneFile(String source, String target) {
 println "We are inside copyOneFile"
 try {
 
@@ -194,7 +194,7 @@ try {
 //}
 
 
-//Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
+Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
 println("Done to copy ${target}")
 
 } catch (Exception e) {
