@@ -139,7 +139,7 @@ for (File file in filesList) {
 count++
 
 File remoteFile = new File(file.replace(from, to))
-println("Files in remoteFile :  ${remoteFile})
+println("Files in remoteFile :  ${remoteFile}")
 String res = takeCareOnOneFile(count, filesList.size(), file, remoteFile, verbose, silent, skipNewer)
 
 switch (res) {
