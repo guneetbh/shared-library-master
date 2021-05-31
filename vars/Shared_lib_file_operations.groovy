@@ -40,7 +40,7 @@ println "Method Called"
   		println (" File? ${from.isFile()}")
         println (" Directory? ${from.isDirectory()}")
 		
-		 def  filesList =  listFiles(createFilePath(pwd()));
+		 def  filesList =  listFiles(createFilePath(from.toString()));
 		 
 if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
@@ -144,6 +144,7 @@ count++
 //println "remoteFile Path : ${file.replace(from, to)}"
 //File remoteFile = new File(file.replace(from, to))
 //println("Files in remoteFile :  ${remoteFile}")
+
 String res = takeCareOnOneFile(count, filesList.size(), file, to, verbose, silent, skipNewer)
 
 switch (res) {
@@ -182,15 +183,15 @@ return success
 
 }
 
-def String takeCareOnOneFile(int count, int filesNumber, File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
+static String takeCareOnOneFile(int count, int filesNumber, File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
 
 // Copy one file to destination
 
 // Copy because destination is different (has different hash)
-
+FilePath destFilePath = createFilePath(pwd() + "/WEBUI2")
 printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
 
-return (copyOneFile(file, remoteFile)) ? "COPY_NEWF" : "FAILED"
+return (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
 
 }
 
@@ -228,7 +229,7 @@ returnExitCode (7)
 
 }
 
-def boolean copyOneFile(File source, File target) {
+static boolean copyOneFile(File source, File target) {
 
 try {
 
