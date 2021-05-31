@@ -1,10 +1,4 @@
-Hi,
-
-As I said in the description of this case , I share (paste) the code here (I cannot upload it via the url because the system blocked - bank security issue).
-
-Tomorrow unfortunatly  I can't meet you. Let's talk on Monday May 31 at 3PM - Israeli timezone if you can.
-
- 
+#!/usr/bin/env groovy 
 
 import java.io.*
 
@@ -28,105 +22,18 @@ See more in 'help' below
 
 */
 
-class cscopy {
+def call(File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
 
-static void main(String[] args) {
-
-if ( args.size ( ) == 0 ) {
-
-showHelp()
-
-} else if ( args.size ( ) == 1 && args [ 0 ] in [ "h", "help" ] ) {
-
-showHelp()
-
-} else if ( args.size ( ) == 2 ) {
-
-println("Flags : default")
-
-File source = new File(args[0])
-
-File target = new File(args[1])
-
-if (source.isDirectory()) {
-
-returnExitCode(copyDir(source, target, false, false, false))
-
-} else {
-
-returnExitCode(copyFile(source, target, false, false, false))
-
+println "Method Called"
+if(file.isFile()) {
+	copyFile(file,  remoteFile,  verbose,  silent,  skipNewer)
+	}
+else if (file.isDirectory()){
+	copyDir(from, File to, verbose, silent, skipNewer)
+}
+println "Method Called"	
 }
 
-} else if ( args.size ( ) == 3 ) {
-
-String flags = args[2]
-
-println("Flags : '${flags}'")
-
-boolean verbose = (flags.contains("v")) ? true : false
-
-boolean silent = (flags.contains("s")) ? true : false
-
-boolean skipNewer = (flags.contains("d")) ? true : false
-
-File source = new File(args[0])
-
-File target = new File(args[1])
-
-if (source.isDirectory()) {
-
-returnExitCode(copyDir(source, target, verbose, silent, skipNewer))
-
-} else {
-
-returnExitCode(copyFile(source, target, verbose, silent, skipNewer))
-
-}
-
-} else {
-
-showHelp()
-
-println("Bad user input")
-
-returnExitCode(1)
-
-}
-
-}
-
-static void showHelp() {
-
-println("""
-
-Copy file or folder by checksum ver. 07.2020
-
-Parameters : source file or folder, target file or folder , (optional) flags
-
-Supported flags : 
-
-v - Verbose mode. More details in log
-
-s - Silent mode. No log
-
-d - Skip copy if destination file is newer than source
-
-Example: 'c:\\temp\\33 c:\\temp\\44 sd' , 'c:\\temp\\3.txt c:\\temp\\4.txt sd'
-
-Internal flags:
-
-SKIP_DATE - File skipped due 'd' flag
-
-COPY_HASH - File copied due HASH difference (file changed)
-
-COPY_NEWF - File copied because not exists on destination
-
-SKIP_COPY - File skipped because source and destination both same checksum
-
-""")
-
-}
 
 static int copyFile(File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
 
@@ -372,4 +279,3 @@ System.exit(error)
 
 }
 
-}
