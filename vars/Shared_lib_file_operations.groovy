@@ -31,13 +31,16 @@ println "Method Called"
 		println ("from.getPath()" + from.getPath())
 		println ("from.getPath()" + to.getPath())
   		println ("From exists: "+from.exists())
-  		
+  		if(!from.exists()){
+			println "Creating directory"
+			mkdirs()
+		}
   		println (" File? ${from.isFile()}")
         println (" Directory? ${from.isDirectory()}")
-if(file.isFile()) {
+if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
 	}
-else if (file.isDirectory()){
+else if (from.isDirectory()){
 	copyDir(from, to, verbose, silent, skipNewer)
 }
 println "Method Called"	
