@@ -123,7 +123,7 @@ return 4
 if (!new File(to).exists()){
 	new File(to).mkdirs()
 }
-def  filesList =  listFiles(createFilePath(from)));
+def  filesList =  listFiles(createFilePath(from));
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
