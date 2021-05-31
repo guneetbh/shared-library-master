@@ -33,7 +33,7 @@ println "Method Called"
   		println ("From exists: "+from.exists())
   		if(!from.exists()){
 			println "Creating directory"
-			mkdirs()
+			from.mkdirs()
 		}
   		println (" File? ${from.isFile()}")
         println (" Directory? ${from.isDirectory()}")
