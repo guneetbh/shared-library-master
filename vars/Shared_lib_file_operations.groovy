@@ -296,7 +296,7 @@ static void returnExitCode(int error) {
 System.exit(error)
 
 }
-
+@NonCPS
 def createFilePath(path) {
     if (env['NODE_NAME'] == null) {
         error "envvar NODE_NAME is not set, probably not inside an node {} or running an older version of Jenkins!";
