@@ -132,7 +132,7 @@ return 4
 if (!to.exists()){
 	to.mkdirs()
 }
-def  filesList =  listFiles(createFilePath(pwd()));
+def  filesList =  listFiles(createFilePath(from.toString()));
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
@@ -145,7 +145,7 @@ count++
 //File remoteFile = new File(file.replace(from, to))
 //println("Files in remoteFile :  ${remoteFile}")
 
-String res = takeCareOnOneFile(count, filesList.size(), file, to, verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, filesList.size(), file, createFilePath(to.toString()), verbose, silent, skipNewer)
 
 switch (res) {
 
