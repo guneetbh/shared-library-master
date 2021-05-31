@@ -124,7 +124,7 @@ if (!new File(to).exists()){
 	new File(to).mkdirs()
 }
 def  filesList =  listFiles(createFilePath(from));
-File source = new File(from + "/"+file).getPath();
+
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
@@ -132,7 +132,7 @@ int size = filesList.size()
 for (File file in filesList) {
 println "######################### Inside Loop"
 count++
-
+File source = new File(from + "/"+file.toString()).getPath();
 String res = takeCareOnOneFile(count, size, source, to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
