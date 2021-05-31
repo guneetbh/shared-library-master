@@ -130,7 +130,7 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 for (File file in filesList) {
-println "############# ${}"
+println "######################### Inside Loop"
 count++
 
 String res = takeCareOnOneFile(count, size, source, to.toString(), verbose, silent, skipNewer)
@@ -176,7 +176,7 @@ static String takeCareOnOneFile(int count, int filesNumber, File file, String de
 // Copy one file to destination
 
 // Copy because destination is different (has different hash)
-
+println "We are inside takeCareOnOneFile"
 printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
 
 return (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
