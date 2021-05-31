@@ -40,7 +40,7 @@ println "Method Called"
   		println (" File? ${from.isFile()}")
         println (" Directory? ${from.isDirectory()}")
 		
-		 def  filesList =  listFiles(createFilePath("${from}"));
+		 def  filesList =  listFiles(createFilePath(pwd()));
 		 
 if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
