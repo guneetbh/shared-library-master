@@ -46,9 +46,9 @@ if(from.isFile()) {
 	copyFile(from,  to,  verbose,  silent,  skipNewer)
 	}
 else if (from.isDirectory()){
-	println "**** Copying files"	
-	
+	println "**** Copying files"		
 	copyDir(from, to, verbose, silent, skipNewer)
+	println "**** Copying finished"
 }
 println "Method Called"	
 
@@ -87,7 +87,7 @@ return (success == "FAILED") ? 1 : 0
 
 }
 
-static int copyDir(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
+def int copyDir(File from, File to, boolean verbose, boolean silent, boolean skipNewer) {
 
 println("Copy folder by checksum")
 
