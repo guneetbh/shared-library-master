@@ -132,7 +132,7 @@ for (File file in filesList) {
 
 count++
 
-String res = takeCareOnOneFile(count, filesList.size(), file, to, verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, filesList.size(), file, to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
 
