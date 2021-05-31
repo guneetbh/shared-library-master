@@ -47,7 +47,7 @@ File destination = new File(to)
 if(source.isFile()) {
 	copyFile(source, destination, verbose,  silent,  skipNewer)
 	}
-else if (from.isDirectory()){
+else if (source.isDirectory()){
 	println "**** Copying files"		
 	copyDir(source, destination, verbose, silent, skipNewer)
 	println "**** Copying finished"
