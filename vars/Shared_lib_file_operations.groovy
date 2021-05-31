@@ -235,7 +235,7 @@ println("Done to copy ${target}")
 
 } catch (Exception e) {
 
-println("Error. Failed to copy file ${source}. \n ${e.printStackTrace}")
+println("Error. Failed to copy file ${source}. \n ${e}")
 
 return false
 
