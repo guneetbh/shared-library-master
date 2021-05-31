@@ -127,12 +127,12 @@ def  filesList =  listFiles(createFilePath(from));
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
-
+int size = filesList.size()
 for (File file in filesList) {
 
 count++
 
-String res = takeCareOnOneFile(count, filesList.size(), file, to.toString(), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, file, to.toString(), verbose, silent, skipNewer)
 
 switch (res) {
 
