@@ -201,9 +201,9 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
-Path sourceFile = Paths.get(source);
-Path targetDir = Paths.get(target);
-Path targetFile = targetDir.resolve(sourceFile.getFileName());
+Path sourceFile = Paths.get(createFilePath(source));
+Path targetDir = Paths.get(createFilePath(target));
+Path targetFile = targetDir.resolve(createFilePath(sourceFile.getFileName()));
  
         try {
  
