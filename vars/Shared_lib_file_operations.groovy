@@ -202,7 +202,7 @@ try {
 
 //}
 FilePath sourceFile = createFilePath(source)
-FilePath targetDir = createFilePath(target));
+FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
 	targetDir.mkdirs()
 }
