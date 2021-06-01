@@ -60,7 +60,7 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 
-def retString =  (copyOneFile(file, destFilePath)) ? "SUCCESS" : "FAILED"
+def retString =  (copyOneFile(file, destFilePath)) ? "SUCCESS" : "FAILED")
 
 println(" Summary : " +
 
