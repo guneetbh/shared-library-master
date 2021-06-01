@@ -26,55 +26,11 @@ See more in 'help' below
 
 def call(String from, String to, boolean verbose, boolean silent, boolean skipNewer) {
 
-
 println "Method Called"
-File source = new File(from)
-File destination = new File(to)
 println ("From file: "+from)
 def  filesList =  listFiles(createFilePath(from));
-		 
-if(source.isFile()) {
-	copyFile(source, destination, verbose,  silent,  skipNewer)
-	}
-else if (source.isDirectory()){
-	println "**** Copying files ${source}"		
-	copyDir(from, to, verbose, silent, skipNewer)
-	println "**** Copying finished"
-}
-println "Method Called"	
-
-}
-
-
-static int copyFile(File file, File remoteFile, boolean verbose, boolean silent, boolean skipNewer) {
-
-println("Copy file by checksum")
-
-int success = 0
-
-if (!file.exists()) {
-
-println("Error. Source file not found ${file.getAbsolutePath()}")
-
-return 2
-
-}
-
-if (!file.isFile()) {
-
-println("Error. Source must be file. ${file.getAbsolutePath()}")
-
-return 4
-
-}
-
-printLine(" Copy : ${file} -> ${remoteFile}", verbose)
-
-String res = takeCareOnOneFile(1, 1, file, remoteFile, verbose, silent, skipNewer)
-
-printLine(" Result : ${res}", verbose)
-
-return (success == "FAILED") ? 1 : 0
+copyDir(from, to, verbose, silent, skipNewer)
+println "Method Call Finished"	
 
 }
 
@@ -96,70 +52,17 @@ int filesCOPY_HASH = 0
 
 int filesCOPY_NEWF = 0
 
-if (!new File(from).exists()) {
 
-println("Error. Source folder not found ${from.getAbsolutePath()}")
-
-return 2
-
-}
-
-if (!new File(from).isDirectory()) {
-
-println("Error. Source must be folder. ${from.getAbsolutePath()}")
-
-return 4
-
-}
-
-//Vector<File> filesList = new Vector()
-
-//from.eachFileRecurse(FileType.FILES) { File file ->
-
-//filesList.add(file)
-
-//}
-
-if (!new File(to).exists()){
-	new File(to).mkdirs()
-}
 def  filesList =  listFiles(createFilePath(from));
 
 println("Files in source folder : ${filesList.size()}")
 
 int count = 0
 int size = filesList.size()
-for (File srcfile in filesList) {
-println "######################### Inside Loop ${srcfile}"
-count++
 
+def retString =  (copyOneFile(file, destFilePath)) ? "SUCCESS" : "FAILED"
 
-String res = takeCareOnOneFile(count, size, from, to, verbose, silent, skipNewer)
-
-println "######################### ${res}"
-switch (res) {
-
-case "SKIP_DATE": filesSKIP_DATE++; filesSkipped++; break
-
-case "SKIP_COPY": filesSKIP_COPY++; filesSkipped++; break
-
-case "COPY_HASH": filesCOPY_HASH++; filesCopied++; break
-
-case "COPY_NEWF": filesCOPY_NEWF++; filesCopied++; break
-
-case "FAILED":
-
-println("Copy failed : ${srcfile}")
-
-return 1
-
-break
-
-}
-
-}
-
-printLine(" Summary : " +
+println(" Summary : " +
 
 "\n Files in source folder : ${filesList.size()}" +
 
@@ -169,7 +72,7 @@ printLine(" Summary : " +
 
 "\n Reasons : SKIP_DATE = ${filesSKIP_DATE}, SKIP_COPY = ${filesSKIP_COPY}, COPY_HASH = ${filesCOPY_HASH}, COPY_NEWF = ${filesCOPY_NEWF}", silent)
 
-return success
+return retString
 
 }
 
@@ -184,28 +87,16 @@ return retString
 
 def copyOneFile(String source, String target) {
 println "We are inside copyOneFile ${source} || ${target}"
-//try {
-
-//File parent = new File(target.getParent())
-
-//if (!parent.exists()) {
-
-//boolean createdParent = parent.mkdirs()
-
-//}
-target = target.replaceAll(" ", "\\ ")
+try{
 FilePath sourceFile = createFilePath(source)
 FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
 	targetDir.mkdirs()
 }
 println("Moving all children to target dir")
-targetDir.chmod(0777)
+//targetDir.chmod(0777)
 
 sourceFile.copyRecursiveTo(targetDir);
-           // Files.copy(sourceFile, targetFile);
-			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
-        
 
 println("Done to copy ${target}")
 
