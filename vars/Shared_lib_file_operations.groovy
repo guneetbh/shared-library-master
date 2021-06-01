@@ -138,17 +138,7 @@ if (!new File(to).exists())
         new File(to).mkdirs();
     }
 println "######################### Inside sub folder"
-    String filesSr[] =new File(srcfile).list();
-
-    for (String file : filesSr)
-    {
-        File srcFile = new File(source, file);
-        File destFile = new File(destination, file);
-        println "srcFile: ${srcFile} destFile: ${destFile}"
-		println "######################### Inside inner loop"
-        copyDir(srcFile.toString(), destFile.toString(), false, false, false);
     }
-}
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
 
 println "######################### ${res}"
