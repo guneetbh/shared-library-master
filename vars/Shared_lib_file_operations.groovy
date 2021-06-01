@@ -1,17 +1,12 @@
 #!/usr/bin/env groovy
 
 import java.io.*
-
 import java.security.MessageDigest
-
 import java.nio.file.Files
-
-import hudson.FilePath;
-import java.nio.file.Path;
+import hudson.FilePath
+import java.nio.file.Path
 import java.nio.file.Paths
-
 import groovy.io.FileType
-
 import java.nio.file.StandardCopyOption
 
 /*
@@ -35,45 +30,28 @@ println "Method Call Finished"
 }
 
 def int copyDir(String from, String to, boolean verbose, boolean silent, boolean skipNewer) {
-
 println("Copy folder by checksum: ${from}")
-
 int success = 0
-
 int filesCopied = 0
-
 int filesSkipped = 0
-
 int filesSKIP_DATE = 0
-
 int filesSKIP_COPY = 0
-
 int filesCOPY_HASH = 0
-
 int filesCOPY_NEWF = 0
 
-
 def  filesList =  listFiles(createFilePath(from));
-
 println("Files in source folder : ${filesList.size()}")
-
 int count = 0
 int size = filesList.size()
-
 def retString =  (copyOneFile(from, to)) ? "SUCCESS" : "FAILED"
 
 printLine(" Summary : " +
-
 "\n Files in source folder : ${filesList.size()}" +
-
 "\n Files copied ${filesCopied}" +
-
 "\n Files skipped ${filesSkipped}" +
-
 "\n Reasons : SKIP_DATE = ${filesSKIP_DATE}, SKIP_COPY = ${filesSKIP_COPY}, COPY_HASH = ${filesCOPY_HASH}, COPY_NEWF = ${filesCOPY_NEWF}", silent)
 
 return retString
-
 }
 
 def takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
@@ -95,30 +73,22 @@ if(!targetDir.exists()){
 }
 println("Moving all children to target dir")
 //targetDir.chmod(0777)
-
 sourceFile.copyRecursiveTo(targetDir);
-
 println("Done to copy ${target}")
 
 //} catch (Exception e) {
-
 //println("Error. Failed to copy file ${source}. \n ${e}")
-
 //return false
-
 //}
-
 return true
-
 }
+
+
 static void printLine(String line, boolean silent) {
-
+println("Silent ${silent}")
 if (!silent) {
-
 println(line)
-
 }
-
 }
 
 static String getMD5(File f) {
