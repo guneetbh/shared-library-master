@@ -201,10 +201,9 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
-
-File sourceFile = new File(source)
-File destFile = new File(target)
-Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
+Path p1 = Paths.get(source);
+Path p2 = Paths.get(target);
+Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
 println("Done to copy ${target}")
 
 } catch (Exception e) {
