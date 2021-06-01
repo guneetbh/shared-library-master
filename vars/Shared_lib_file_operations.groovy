@@ -130,12 +130,14 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 for (File srcfile in filesList) {
-println "######################### Inside Loop ${srcfile.toString()}"
+println "######################### Inside Loop ${srcfile}"
 count++
+File fl = new File(srcfile)
 
-File fl = new File(srcfile.toString())
 if(fl.isDirectory()){
-println "######################### Fl is directory"
+println "######################### fl is directory"
+}else{
+println "######################### ${fl} is not directory"
 }
 
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
