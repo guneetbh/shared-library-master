@@ -202,7 +202,7 @@ if(!targetDir.exists()){
 println("Moving all children to target dir")
 targetDir.chmod(0777)
 
-sourceFile.copyTo(targetDir);
+sourceFile.copyRecursiveTo(targetDir);
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
         
