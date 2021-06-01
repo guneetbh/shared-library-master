@@ -206,8 +206,8 @@ FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
 	targetDir.mkdirs()
 }
-
-copyTo(targetDir);
+println("Moving all children to target dir")
+sourceFile.moveAllChildrenTo(targetDir);
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
         
