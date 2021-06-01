@@ -132,17 +132,9 @@ int size = filesList.size()
 for (File srcfile in filesList) {
 println "######################### Inside Loop ${srcfile}"
 count++
-File fl = new File(srcfile)
 
-if(fl.isDirectory()){
-println "######################### fl is directory"
-}else if(fl.isFile()){
-println "######################### ${fl} is file"
-}else{
-println "######################### ${fl} is neither directory nor file. Strange!!!!!!!!"
-}
 
-String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, from+"/"+srcfile, to+"/"+srcfile, verbose, silent, skipNewer)
 
 println "######################### ${res}"
 switch (res) {
@@ -285,8 +277,8 @@ def List<String> listFiles(rootPath) {
     print "Files in ${rootPath}:";
     List<String> filesList = new ArrayList<String>();
     for (subPath in rootPath.list()) {
-        println "Files found: ${subPath}";
-        filesList.add("${subPath}");
+        println "Files found: ${subPath.getName()}";
+        filesList.add("${subPath.getName()}");
     }
     return filesList
 }
