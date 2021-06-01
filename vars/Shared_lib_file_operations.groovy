@@ -83,8 +83,7 @@ println("Done to copy ${target}")
 return true
 }
 
-
-static void printLine(String line, boolean silent) {
+def printLine(String line, boolean silent) {
 println("Silent ${silent}")
 if (!silent) {
 println(line)
