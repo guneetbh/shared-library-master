@@ -60,9 +60,9 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 
-def retString =  (copyOneFile(file, destFilePath)) ? "SUCCESS" : "FAILED")
+def retString =  (copyOneFile(file, destFilePath)) ? "SUCCESS" : "FAILED"
 
-println(" Summary : " +
+printLine(" Summary : " +
 
 "\n Files in source folder : ${filesList.size()}" +
 
@@ -87,7 +87,7 @@ return retString
 
 def copyOneFile(String source, String target) {
 println "We are inside copyOneFile ${source} || ${target}"
-try{
+//try{
 FilePath sourceFile = createFilePath(source)
 FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
