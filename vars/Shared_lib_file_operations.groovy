@@ -54,18 +54,9 @@ printLine(" Summary : " +
 return retString
 }
 
-def takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
-
-println ("We are inside takeCareOnOneFile")
-//printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
-def retString =  (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
-println ("We are inside retString: ${retString}")
-return retString
-}
-
 def copyOneFile(String source, String target) {
 println "We are inside copyOneFile ${source} || ${target}"
-//try{
+try{
 FilePath sourceFile = createFilePath(source)
 FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
@@ -75,14 +66,21 @@ println("Moving all children to target dir")
 //targetDir.chmod(0777)
 sourceFile.copyRecursiveTo(targetDir);
 println("Done to copy ${target}")
-
-//} catch (Exception e) {
-//println("Error. Failed to copy file ${source}. \n ${e}")
-//return false
-//}
+} catch (Exception e) {
+println("Error. Failed to copy file ${source}. \n ${e}")
+return false
+}
 return true
 }
 
+def takeCareOnOneFile(int count, int filesNumber, String file, String destFilePath, boolean verbose, boolean silent, boolean skipNewer) {
+
+println ("We are inside takeCareOnOneFile")
+//printLine("File [${count}/${filesNumber}] : COPY_NEWF : ${file}", silent)
+def retString =  (copyOneFile(file, destFilePath)) ? "COPY_NEWF" : "FAILED"
+println ("We are inside retString: ${retString}")
+return retString
+}
 def printLine(String line, boolean silent) {
 println("Silent ${silent}")
 if (!silent) {
