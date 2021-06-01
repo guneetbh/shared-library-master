@@ -192,7 +192,7 @@ return retString
 
 def copyOneFile(String source, String target) {
 println "We are inside copyOneFile ${source} || ${target}"
-try {
+//try {
 
 //File parent = new File(target.getParent())
 
@@ -217,13 +217,13 @@ sourceFile.copyTo(targetDir);
 
 println("Done to copy ${target}")
 
-} catch (Exception e) {
+//} catch (Exception e) {
 
-println("Error. Failed to copy file ${source}. \n ${e}")
+//println("Error. Failed to copy file ${source}. \n ${e}")
 
-return false
+//return false
 
-}
+//}
 
 return true
 
