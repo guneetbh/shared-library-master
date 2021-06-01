@@ -132,13 +132,13 @@ int size = filesList.size()
 for (File srcfile in filesList) {
 println "######################### Inside Loop"
 count++
-if(srcfile.isDirectory()){
-if (!srcfile.exists())
+if(new File(srcfile).isDirectory()){
+if (!new File(srcfile).exists())
     {
-        destination.mkdirs();
+        new File(to).mkdirs();
     }
 
-    String filesSr[] =srcfile.list();
+    String filesSr[] =new File(srcfile).list();
 
     for (String file : filesSr)
     {
