@@ -207,7 +207,7 @@ if(!targetDir.exists()){
 	targetDir.mkdirs()
 }
 
-sourceFile.copyTo(targetDir);
+copyTo(targetDir);
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
         
