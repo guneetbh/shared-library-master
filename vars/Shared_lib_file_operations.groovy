@@ -216,16 +216,14 @@ FilePath ws = build.getWorkspace();
         return null;
       }
  
-        try {
+       
 				 FilePath locationFilePath = ws.child(sourceFile);
       locationFilePath.getParent().mkdirs();
       locationFilePath.copyFrom(sourceFile);
       locationFilePath.copyTo(new FilePath(targetDir);//getLocationUnderBuild(build)));
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
-        }  catch (IOException ex) {
-            System.err.format("I/O Error when copying file");
-        }
+        
 
 println("Done to copy ${target}")
 
