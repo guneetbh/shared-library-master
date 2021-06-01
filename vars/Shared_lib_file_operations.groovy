@@ -201,6 +201,7 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
+target = target.replaceAll(" ", "\\ ")
 FilePath sourceFile = createFilePath(source)
 FilePath targetDir = createFilePath(target);
 if(!targetDir.exists()){
@@ -208,7 +209,7 @@ if(!targetDir.exists()){
 }
 println("Moving all children to target dir")
 targetDir.chmod(0777)
-targetDir.replaceAll(" ", "\\ ")
+
 sourceFile.copyTo(targetDir);
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
