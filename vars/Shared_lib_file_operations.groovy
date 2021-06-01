@@ -201,13 +201,27 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
-Path sourceFile = Paths.get(createFilePath(source));
-Path targetDir = Paths.get(createFilePath(target));
-Path targetFile = targetDir.resolve(createFilePath(sourceFile.getFileName()));
+FilePath sourceFile = createFilePath(source)
+FilePath targetDir = createFilePath(target));
+if(!targetDir.exists()){
+	targetDir.mkdirs()
+}
+FilePath ws = build.getWorkspace();
+      if (ws == null) {
+        throw new IllegalStateException("The workspace should be created when setUp method is called");
+      }
+      if (!ALLOW_FOLDER_TRAVERSAL_OUTSIDE_WORKSPACE && !ws.isDescendant(location)) {
+        listener.error("Rejecting file path escaping base directory with relative path: " + location);
+        // force the build to fail
+        return null;
+      }
  
         try {
- 
-            Files.copy(sourceFile, targetFile);
+				 FilePath locationFilePath = ws.child(sourceFile);
+      locationFilePath.getParent().mkdirs();
+      locationFilePath.copyFrom(sourceFile);
+      locationFilePath.copyTo(new FilePath(targetDir);//getLocationUnderBuild(build)));
+           // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
         }  catch (IOException ex) {
             System.err.format("I/O Error when copying file");
