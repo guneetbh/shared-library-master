@@ -207,7 +207,7 @@ if(!targetDir.exists()){
 	targetDir.mkdirs()
 }
 println("Moving all children to target dir")
-sourceFile.moveAllChildrenTo(targetDir);
+sourceFile.copyTo(targetDir);
            // Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
         
