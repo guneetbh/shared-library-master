@@ -37,7 +37,7 @@ if(source.isFile()) {
 	copyFile(source, destination, verbose,  silent,  skipNewer)
 	}
 else if (source.isDirectory()){
-	println "**** Copying files"		
+	println "**** Copying files ${source}"		
 	copyDir(from, to, verbose, silent, skipNewer)
 	println "**** Copying finished"
 }
