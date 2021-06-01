@@ -7,7 +7,7 @@ import java.security.MessageDigest
 import java.nio.file.Files
 
 import hudson.FilePath;
-
+import java.nio.file.Path;
 import java.nio.file.Paths
 
 import groovy.io.FileType
@@ -191,7 +191,7 @@ return retString
 }
 
 def copyOneFile(String source, String target) {
-println "We are inside copyOneFile"
+println "We are inside copyOneFile ${source} || ${target}"
 try {
 
 //File parent = new File(target.getParent())
