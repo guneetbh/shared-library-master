@@ -209,9 +209,7 @@ Path targetFile = p2.resolve(sourceFile.getFileName());
  
             Files.copy(sourceFile, targetFile);
 			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
-        } catch (FileAlreadyExistsException ex) {
-            System.err.format("File %s already exists.", targetFile);
-        } catch (IOException ex) {
+        }  catch (IOException ex) {
             System.err.format("I/O Error when copying file");
         }
 
