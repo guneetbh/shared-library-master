@@ -132,13 +132,6 @@ int size = filesList.size()
 for (File srcfile in filesList) {
 println "######################### Inside Loop"
 count++
-if(new File(srcfile).isDirectory()){
-if (!new File(to).exists())
-    {
-        new File(to).mkdirs();
-    }
-println "######################### Inside sub folder"
-    }
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
 
 println "######################### ${res}"
