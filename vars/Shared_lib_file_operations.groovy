@@ -9,16 +9,6 @@ import java.nio.file.Paths
 import groovy.io.FileType
 import java.nio.file.StandardCopyOption
 
-/*
-
-This script copies files or folders by checksum
-
-File will be copied only in source and destination files are different
-
-See more in 'help' below
-
-*/
-
 def call(String from, String to, boolean verbose, boolean silent, boolean skipNewer) {
 
 println "Method Called"
