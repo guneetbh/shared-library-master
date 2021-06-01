@@ -134,7 +134,7 @@ println "######################### Inside Loop ${srcfile}"
 count++
 
 
-String res = takeCareOnOneFile(count, size, from+"/"+srcfile, to+"/"+srcfile, verbose, silent, skipNewer)
+String res = takeCareOnOneFile(count, size, from, to, verbose, silent, skipNewer)
 
 println "######################### ${res}"
 switch (res) {
