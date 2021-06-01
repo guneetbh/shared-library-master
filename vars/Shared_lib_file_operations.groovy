@@ -201,9 +201,20 @@ try {
 //boolean createdParent = parent.mkdirs()
 
 //}
-Path p1 = Paths.get(source);
-Path p2 = Paths.get(target);
-Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
+Path sourceFile = Paths.get(source);
+Path targetDir = Paths.get(target);
+Path targetFile = p2.resolve(sourceFile.getFileName());
+ 
+        try {
+ 
+            Files.copy(sourceFile, targetFile);
+			//Files.copy(p1,p2, StandardCopyOption.REPLACE_EXISTING)
+        } catch (FileAlreadyExistsException ex) {
+            System.err.format("File %s already exists.", targetFile);
+        } catch (IOException ex) {
+            System.err.format("I/O Error when copying file");
+        }
+
 println("Done to copy ${target}")
 
 } catch (Exception e) {
