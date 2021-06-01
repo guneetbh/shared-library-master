@@ -130,22 +130,22 @@ println("Files in source folder : ${filesList.size()}")
 int count = 0
 int size = filesList.size()
 for (File srcfile in filesList) {
-println "######################### Inside Loop"
+println "######################### Inside Loop ${srcfile.toString()}"
 count++
 
-
-if(srcfile.isDirectory()){
+File fl = new File(srcfile)
+if(fl.isDirectory()){
 if (!new File(to).exists())
     {
         new File(to).mkdirs();
     }
 println "######################### Inside sub folder"
-    String filesSr[] = srcfile.list();
+    String filesSr[] = fl.list();
 
     for (String file : filesSr)
     {
-        File srcFile = new File(source, file);
-        File destFile = new File(destination, file);
+        File srcFile = new File(fl, file);
+        File destFile = new File(to, file);
         println "srcFile: ${srcFile} destFile: ${destFile}"
 		println "######################### Inside inner loop"
         copyDir(srcFile.toString(), destFile.toString(), false, false, false);
