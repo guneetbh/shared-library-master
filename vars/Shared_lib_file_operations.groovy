@@ -203,7 +203,7 @@ try {
 //}
 Path sourceFile = Paths.get(source);
 Path targetDir = Paths.get(target);
-Path targetFile = p2.resolve(sourceFile.getFileName());
+Path targetFile = targetDir.resolve(sourceFile.getFileName());
  
         try {
  
