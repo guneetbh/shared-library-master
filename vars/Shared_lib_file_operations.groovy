@@ -132,6 +132,26 @@ int size = filesList.size()
 for (File srcfile in filesList) {
 println "######################### Inside Loop"
 count++
+
+
+if(srcfile.isDirectory()){
+if (!new File(to).exists())
+    {
+        new File(to).mkdirs();
+    }
+println "######################### Inside sub folder"
+    String filesSr[] = srcfile.list();
+
+    for (String file : filesSr)
+    {
+        File srcFile = new File(source, file);
+        File destFile = new File(destination, file);
+        println "srcFile: ${srcFile} destFile: ${destFile}"
+		println "######################### Inside inner loop"
+        copyDir(srcFile.toString(), destFile.toString(), false, false, false);
+    }
+}
+
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
 
 println "######################### ${res}"
@@ -147,7 +167,7 @@ case "COPY_NEWF": filesCOPY_NEWF++; filesCopied++; break
 
 case "FAILED":
 
-println("Copy failed : ${file}")
+println("Copy failed : ${srcfile}")
 
 return 1
 
