@@ -194,7 +194,7 @@ try {
 //}
 
 
-Files.copy(Paths.get(new File(source).getPath()), Paths.get(new File(target).getPath()), StandardCopyOption.REPLACE_EXISTING)
+Files.copy(Paths.get(source), Paths.get(target), StandardCopyOption.REPLACE_EXISTING)
 println("Done to copy ${target}")
 
 } catch (Exception e) {
