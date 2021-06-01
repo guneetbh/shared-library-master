@@ -133,23 +133,9 @@ for (File srcfile in filesList) {
 println "######################### Inside Loop ${srcfile.toString()}"
 count++
 
-File fl = new File(srcfile)
+File fl = new File(srcfile.toString())
 if(fl.isDirectory()){
-if (!new File(to).exists())
-    {
-        new File(to).mkdirs();
-    }
-println "######################### Inside sub folder"
-    String filesSr[] = fl.list();
-
-    for (String file : filesSr)
-    {
-        File srcFile = new File(fl, file);
-        File destFile = new File(to, file);
-        println "srcFile: ${srcFile} destFile: ${destFile}"
-		println "######################### Inside inner loop"
-        copyDir(srcFile.toString(), destFile.toString(), false, false, false);
-    }
+println "######################### Fl is directory"
 }
 
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
