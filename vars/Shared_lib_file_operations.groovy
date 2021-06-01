@@ -136,8 +136,10 @@ File fl = new File(srcfile)
 
 if(fl.isDirectory()){
 println "######################### fl is directory"
+}else if(fl.isFile()){
+println "######################### ${fl} is file"
 }else{
-println "######################### ${fl} is not directory"
+println "######################### ${fl} is neither directory nor file. Strange!!!!!!!!"
 }
 
 String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
