@@ -129,11 +129,26 @@ println("Files in source folder : ${filesList.size()}")
 
 int count = 0
 int size = filesList.size()
-for (File file in filesList) {
+for (File srcfile in filesList) {
 println "######################### Inside Loop"
 count++
+if(srcfile.isDirectory()){
+if (!srcfile.exists())
+    {
+        destination.mkdirs();
+    }
 
-String res = takeCareOnOneFile(count, size, file.toString(), to.toString(), verbose, silent, skipNewer)
+    String filesSr[] =srcfile.list();
+
+    for (String file : filesSr)
+    {
+        File srcFile = new File(source, file);
+        File destFile = new File(destination, file);
+        println "srcFile: ${srcFile} destFile: ${destFile}"
+        copyDir(srcFile.toString(), destFile.toString(), false, false, false);
+    }
+}
+String res = takeCareOnOneFile(count, size, srcfile.toString(), to.toString(), verbose, silent, skipNewer)
 
 println "######################### ${res}"
 switch (res) {
